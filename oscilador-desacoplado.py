@@ -1,15 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 from numpy import array,arange,cross, pi, sqrt, random, linspace, cos ,sin,linalg, log, dot
 import pandas as pd
-
-
-# In[2]:
-
 
 #ctes
 alpha = 0.005
@@ -21,11 +11,7 @@ w     = 0.08 #No es necesariamente la frecuencia natural del sistema, fue puesta
 beta1p   = arange(0.12,0.23+1*10**(-4),1*10**(-4),float)
 print(len(beta1p))
 
-
-# ## Condición inicial magnetización
-
-# In[3]:
-
+# Condición inicial magnetización
 
 #Para números aleatorios
 
@@ -42,11 +28,7 @@ m = array([MX,MY,MZ])
 print(m)
 
 
-# ## Condición inicial del deltaM
-# 
-
-# In[4]:
-
+# Condición inicial del deltaM
 
 PrimeraIteracion = 85000
 UltimaIteracion = 90001
@@ -69,9 +51,7 @@ M0 = array([mx0,my0,mz0])
 deltaM = (Mi-dot(Mi,M0)*M0)/linalg.norm((Mi-dot(Mi,M0)*M0))
 
 
-# ## deltaM punto
-
-# In[5]:
+# deltaM punto
 
 
 def dDelta(DeltaM, MX, MY, MZ,t):
@@ -79,20 +59,14 @@ def dDelta(DeltaM, MX, MY, MZ,t):
     return dot(J(MX, MY, MZ,t), DeltaM)
 
 
-# ## Crear tabla
-
-# In[6]:
-
+# Crear tabla
 
 Lyapunov = pd.DataFrame()
 Betapoints = []
 Lyapoints = []
 
 
-# ## Integrar
-
-# In[ ]:
-
+# Integrar
 
 #limites integracion 
 a = 0.0
@@ -200,34 +174,4 @@ Lyapunov["Exp"] = Lyapoints
 Lyapunov["Beta1"] = Betapoints
 
 
-# In[ ]:
-
-
 Lyapunov.to_csv("Lyapunov-B.csv")
-
-
-# ## Graficar
-
-# In[ ]:
-
-
-from pylab import plot,xlabel,ylabel,show,title, figure,savefig,scatter,legend, xlim, ylim, xticks, yticks
-
-Lyapunov = pd.read_csv("Lyapunov-B.csv")
-
-#Grafico mx
-figure(figsize=(13,6))
-
-scatter(Lyapunov["Beta1"],Lyapunov["Exp"], s=5, color= "black")
-
-title("LLE vs ${β}_{1}$",fontsize=20)
-xlabel("${β}_{1}$",fontsize=16)
-ylabel("LLE",fontsize=16)
-    
-xlim(0.12,0.22)
-ylim(-0.002,0.02)
-xticks(fontsize=13)
-yticks(fontsize=13)   
-    
-show()
-
