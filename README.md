@@ -1,0 +1,1 @@
+# Dinamica-de-magnetizacion-en-laminas-controladas-por-voltaje
