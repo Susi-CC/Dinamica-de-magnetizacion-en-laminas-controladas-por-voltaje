@@ -1,17 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 from math import cos, sin
 from numpy import array,arange,cross, pi, sqrt, random, linspace
-from pylab import plot,xlabel,ylabel,show,title, figure,savefig,scatter
 import pandas as pd
-
-
-# In[2]:
-
 
 #ctes
 alpha = 0.005
@@ -20,20 +9,12 @@ h     = 0.1
 beta0 = 0.05
 w     = 0.08 #No es necesariamente la frecuencia natural del sistema, fue puesta a conveniencia
 
-
-# In[3]:
-
-
 #Para hacer el ciclo:
 beta1p   = arange(0.,0.123+1*10**(-4),1*10**(-4),float)
 
 x = pd.DataFrame()
 y = pd.DataFrame()
 z = pd.DataFrame()
-
-
-# In[4]:
-
 
 #Para números aleatorios
 
@@ -48,10 +29,6 @@ MZ = sqrt(abs(1-(MX**2+MY**2)))
 
 m = array([MX,MY,MZ])
 print(m)
-
-
-# In[5]:
-
 
 #Ahora el ciclo
 for beta1 in reversed(beta1p):
@@ -133,9 +110,6 @@ for beta1 in reversed(beta1p):
 # y.to_csv(f"CI(5){[MX,MY,MZ]}-beta1-my-0-0.123.csv")
 # z.to_csv(f"CI(5){[MX,MY,MZ]}-beta1-mz-0-0.123.csv")
 
-# In[7]:
-
-
 #Leer las tabla
 x = pd.read_csv(f"CI(5){[MX,MY,MZ]}-beta1-mx-0-0.123.csv")
 y = pd.read_csv(f"CI(5){[MX,MY,MZ]}-beta1-my-0-0.123.csv")
@@ -157,18 +131,10 @@ z1 = z.drop(['Tiempo'],axis=1)
 z2 = z1.drop(['Unnamed: 0'],axis=1)
 mz = z2.T
 
-
-# In[8]:
-
-
 betapoints = []
 for beta1 in beta1p:
     if (round(beta1*10**(6),0)%500)==0:
         betapoints.append(beta1)
-
-
-# In[10]:
-
 
 from pylab import plot,xlabel,ylabel,show,title, figure,savefig,scatter,legend, xlim, ylim, xticks, yticks
 
@@ -187,10 +153,3 @@ for i in it:
     yticks(fontsize=13)   
     
 show()
-
-
-# In[ ]:
-
-
-
-
