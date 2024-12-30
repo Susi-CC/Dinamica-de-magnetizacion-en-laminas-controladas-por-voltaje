@@ -4,13 +4,30 @@ Este repositorio contiene los códigos desarrollados para la tesis: **"Dinámica
 
 ## Estructura del Repositorio
 
-- **`Lyapunov-oscilador-desacoplado.py`**: Calcula el exponente de Lyapunov para un oscilador magnético aislado bajo un voltaje oscilatorio.
+- **`Lyapunov-oscilador-desacoplado.py`**: Calcula el exponente de Lyapunov para un oscilador magnético aislado bajo un voltaje oscilatorio. El código está diseñado para integrar dando un intervalo de β1 de 0.12 a 0.23. El código devuelve un archivo .csv con el λLLE para cada β1 de intervalo, con los datos separados por comas.
 
-- **`Lyapunov-osciladores-acoplados.c`**: Calcula el exponente de Lyapunov para múltiples osciladores magnéticos acoplados mediante campos dipolares.
+- **`Lyapunov-osciladores-acoplados.c`**: Calcula el exponente de Lyapunov para múltiples osciladores magnéticos acoplados mediante campos dipolares. El código está diseñado para acoplar 6 osciladores con una condición inicial específica. Al finalizar, el código devuelve por el terminal el máximo exponente de Lyapunov, además una vez transcurrido el tiempo transiente genera documentos .csv para mx, my y mz en determinado β1, con la información del vector de diferencia de trayectoria para los seis osciladores antes de normalizar, organizados en tablas separadas por comas.
 
-- **`Oscilador-desacoplado.py`**: Simula la dinámica de un oscilador magnético aislado bajo un voltaje oscilatorio.
+  **Compilación y ejecución:**
+  ```bash
+  gcc -o Lyapunov-osciladores-acoplados Lyapunov-osciladores-acoplados.c -lm
+  ./Lyapunov-osciladores-acoplados
+  ```
 
-- **`Osciladores-acoplados.c`**: Integra las ecuaciones de múltiples osciladores magnéticos acoplados mediante campos dipolares.
+- **`Oscilador-desacoplado.py`**: Simula la dinámica de un oscilador magnético aislado bajo un voltaje oscilatorio. El código está diseñado para integrar dando un intervalo de β1 de 0.0 a 0.123 y con una condición aleatoria originada por una semilla. El código devuelve tres archivos .csv con los datos de la magnetización en el eje x, y y z para cada β1 del intervalo, los datos están separados por comas.
+
+  **Ejecución:**
+  ```bash
+  python Oscilador-desacoplado.py
+  ```
+
+- **`Osciladores-acoplados.c`**: Integra las ecuaciones de múltiples osciladores magnéticos acoplados mediante campos dipolares. El código está diseñado para acoplar 6 osciladores. Para acoplar una cantidad distinta de osciladores, se cambia el valor de N en la línea 7 del código. Al finalizar, el código devuelve documentos .csv para mx, my y mz en determinado β1, con la información de la magnetización para los seis osciladores posterior al tiempo transiente, esta información está organizada en tablas separadas por comas.
+
+  **Compilación y ejecución:**
+  ```bash
+  gcc -o Osciladores-acoplados Osciladores-acoplados.c -lm
+  ./Osciladores-acoplados
+  ```
 
 ## Publicaciones Relacionadas
 
@@ -34,4 +51,23 @@ Para los scripts en Python:
 Instalación de librerías de Python:
 ```bash
 pip install numpy matplotlib
+```
 
+## Resultados Esperados
+
+- **Lyapunov-oscilador-desacoplado.py:** Genera un archivo .csv con el λLLE para cada β1 en el intervalo definido.
+- **Lyapunov-osciladores-acoplados.c:** Imprime el máximo exponente de Lyapunov en el terminal y genera archivos .csv con datos organizados por comas para las magnetizaciones mx, my, mz en determinado β1.
+- **Oscilador-desacoplado.py:** Produce tres archivos .csv con los datos de la magnetización en los ejes x, y y z para cada β1 del intervalo.
+- **Osciladores-acoplados.c:** Crea documentos .csv para mx, my y mz, mostrando las magnetizaciones para múltiples osciladores después del tiempo transiente.
+
+## Autor
+
+**Susana Alejandra Contreras Celada**
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Más detalles en el archivo `LICENSE`.
+
+---
+
+¡Espero que este repositorio sea útil para investigaciones futuras sobre dinámicas de magnetización y osciladores acoplados! Para consultas, no dudes en contactarme.
