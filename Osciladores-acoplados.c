@@ -1,10 +1,10 @@
-#include <stdio.h>
+   #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
 #define		pi      3.1415926535897932384626433832795028841971693993751058
 
-#define		N	6 //Número osciladores 
+#define		N	2 //Número osciladores 
 #define		ni	0 //Inicio del ciclo para los osciladores
 
 
@@ -54,7 +54,7 @@ double V0 = 1256.64; //Volumen del material
 
 int main()
 {    
-     srand48(355);
+     srand48(24);
     /*===================================*/                  
     /*-------------PARAMETROS----------- */   
     /*===================================*/   
@@ -65,8 +65,8 @@ int main()
     tf = 18000.0*2.0*pi/w;   
     
     B1=0.16; // ELl beta1 inicial
-    B1F=0.16; // El beta1 final
-    dB1=0.0001; // El paso de beta 1
+    B1F=0.21; // El beta1 final
+    dB1=0.00001; // El paso de beta 1
     
     
 /***********************************************************************/   
@@ -100,33 +100,19 @@ int main()
 	/*-----------------CI--------------- */   
 	/*===================================*/    
     
-     mx[0]= -0.391009;
-     my[0]= 0.763533;
-     mz[0]= -0.513936;
-          
-     mx[1]= -0.947049;
-     my[1]= -0.298996;
-     mz[1]= -0.117043;
-
-     mx[2]= 0.092641;
-     my[2]= -0.706958;
-     mz[2]= -0.701162; 
-     
-     mx[3]= -0.578792;
-     my[3]= 0.682681;
-     mz[3]= -0.446034;
-          
-     mx[4]= 0.440036;
-     my[4]= 0.28852;
-     mz[4]= 0.850367;
-
-     mx[5]= 0.066988;
-     my[5]= -0.203915;
-     mz[5]= -0.976694;
-          
-    // mx[6]= -0.997497;
-    // my[6]= -0.031585;
-    // mz[6]= -0.06326;
+    for (n = ni; n < N; n = n+1)
+    {
+        mx_1[n] = -1.0+2.0*drand48();
+        my_1[n] = -1.0+2.0*drand48();
+        mz_1[n] = -1.0+2.0*drand48();
+        
+        double Norma=sqrt(mx_1[n]*mx_1[n]+my_1[n]*my_1[n]+mz_1[n]*mz_1[n]);
+        
+        mx[n] = mx_1[n]/Norma;
+        my[n] = my_1[n]/Norma;
+        mz[n] = mz_1[n]/Norma;
+        
+    }
                                                    
     /*--------------POSICIONES------------- */   
     
@@ -154,7 +140,7 @@ int main()
     while(B1<=B1F)
     {    
    
-    	B1_red = lround(B1*10000);
+    	B1_red = lround(B1*100000);
     	
 
 	if(B1_red % B1_div == 0)
@@ -301,7 +287,7 @@ int main()
 				my[n] = my[n] + (k1y[n] + 2.0*k2y[n] + 2.0*k3y[n] + k4y[n])/6.0;
 				mz[n] = mz[n] + (k1z[n] + 2.0*k2z[n] + 2.0*k3z[n] + k4z[n])/6.0;
 			}            			
-     			if(t>600000.0 )
+     			if(t>800000.0 && lround(t*1000*w/(2*pi))% t_div == 0)
 			{
     				fprintf(mag_x,"\n%f,",t+dt);
         			fprintf(mag_y,"\n%f,",t+dt);
