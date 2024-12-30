@@ -175,3 +175,25 @@ Lyapunov["Beta1"] = Betapoints
 
 
 Lyapunov.to_csv("Lyapunov-B.csv")
+
+# Graficar
+
+from pylab import plot,xlabel,ylabel,show,title, figure,savefig,scatter,legend, xlim, ylim, xticks, yticks
+
+Lyapunov = pd.read_csv("Lyapunov-B.csv")
+
+#Grafico mx
+figure(figsize=(13,6))
+
+scatter(Lyapunov["Beta1"],Lyapunov["Exp"], s=5, color= "black")
+
+title("LLE vs ${β}_{1}$",fontsize=20)
+xlabel("${β}_{1}$",fontsize=16)
+ylabel("LLE",fontsize=16)
+    
+xlim(0.12,0.22)
+ylim(-0.002,0.02)
+xticks(fontsize=13)
+yticks(fontsize=13)   
+    
+show()
