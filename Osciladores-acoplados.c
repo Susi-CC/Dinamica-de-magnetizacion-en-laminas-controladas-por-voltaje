@@ -4,7 +4,7 @@
 
 #define		pi      3.1415926535897932384626433832795028841971693993751058
 
-#define		N	2 //Número osciladores 
+#define		N	6 //Número osciladores 
 #define		ni	0 //Inicio del ciclo para los osciladores
 
 
