@@ -1,3 +1,19 @@
+# Dynamics of Magnetization in Thin Films Controlled by Voltage
+
+This repository contains the codes developed for the thesis: **"Dynamics of Magnetization in Thin Films Controlled by Voltage"**. The programs are implemented in **C** and **Python**, focusing on the numerical integration of the **Landau-Lifshitz equation** to study the dynamics of isolated and coupled magnetic oscillators.
+
+## Repository Structure
+
+* **`Lyapunov-oscilador-desacoplado.py`**: Calculates the **Lyapunov exponent** for an isolated magnetic oscillator under an oscillatory voltage. The code is designed to integrate over a β1 interval from 0.12 to 0.23. It outputs a `.csv` file with the λLLE for each β1 in the interval, with data separated by commas.
+
+* **`Lyapunov-osciladores-acoplados.c`**: Calculates the **Lyapunov exponent** for multiple magnetic oscillators coupled via dipolar fields. The code is designed to couple 6 oscillators with a specific initial condition. At the end, the code outputs the maximum Lyapunov exponent to the terminal and generates `.csv` files for **mx**, **my**, and **mz** at a given β1. These files contain the trajectory difference vector information for the six oscillators before normalization, organized in comma-separated tables.
+
+  **Compilation and execution:**
+  ```bash
+  gcc -o Lyapunov-osciladores-acoplados Lyapunov-osciladores-acoplados.c -lm
+  ./Lyapunov-osciladores-acoplados
+
+
 # Dinámica de la Magnetización en Láminas Delgadas Controladas por Voltaje
 
 Este repositorio contiene los códigos desarrollados para la tesis: **"Dinámica de la magnetización en láminas delgadas controladas por voltaje"**. Los programas están implementados en C y Python, enfocados en la integración numérica de la ecuación de Landau-Lifshitz para estudiar la dinámica de osciladores magnéticos aislados y acoplados.
@@ -71,3 +87,4 @@ Este proyecto está bajo la licencia MIT. Más detalles en el archivo `LICENSE`.
 ---
 
 ¡Espero que este repositorio sea útil para investigaciones futuras sobre dinámicas de magnetización y osciladores acoplados! Para consultas, no dudes en contactarme.
+
